@@ -138,8 +138,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async fetchDataset ({ commit }, { name }) {
-      const base = window.location.origin
+    async fetchDataset ({ state, commit }, { name }) {
+      const base = process.env.BASE_URL
       try {
         const dataset = await fetch(`${base}/data/${name}.json`)
           .then(r => r.json())

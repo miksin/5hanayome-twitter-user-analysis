@@ -9,6 +9,8 @@ through a interactive visualization tool.
 
 ## Information
 
+![demo](public/demo.png)
+
 - fans among 5 sisters
 - mentioned keywords from timelines
 - locations of followers

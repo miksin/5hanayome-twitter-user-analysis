@@ -1,5 +1,7 @@
 # 5Hanayome Twitter Users Analysis
 
+[![Build Status](https://travis-ci.org/miksin/5hanayome-twitter-user-analysis.svg?branch=master)](https://travis-ci.org/miksin/5hanayome-twitter-user-analysis)
+
 [Live Demo](https://miksin.github.io/5hanayome-twitter-user-analysis)
 
 An analysis of followers of 五等分の花嫁 twitter official account [@5Hanayome](https://twitter.com/5Hanayome)

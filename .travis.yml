@@ -13,8 +13,8 @@ branches:
 
 install:
   - yarn install
-  - yarn generate:data
-  - yarn build
+  - yarn run generate:data
+  - yarn run build
 
 script:
   - echo "Skipping tests"

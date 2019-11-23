@@ -139,9 +139,8 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchDataset ({ state, commit }, { name }) {
-      const base = process.env.BASE_URL
       try {
-        const dataset = await fetch(`${base}/data/${name}.json`)
+        const dataset = await fetch(`data/${name}.json`)
           .then(r => r.json())
 
         commit('setDataset', { name, dataset })

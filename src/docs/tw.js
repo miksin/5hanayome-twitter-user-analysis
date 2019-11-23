@@ -11,7 +11,7 @@ const introduction = `
 const chartInfo = {
   'distribution-five': {
     title: `追隨者派別分布圓餅圖`,
-    description: `在名稱或詳細中標明派別的使用者數於<span class="font-color danger">五派</span>中的分布比例`
+    description: `在名稱或詳細中標明派別的使用者數於<span class="font-color danger">五個派別</span>中的分布比例`
   },
   'distribution-all': {
     title: `追隨者派別分布圓餅圖`,

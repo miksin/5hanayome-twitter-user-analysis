@@ -13,7 +13,7 @@ branches:
 
 install:
   - yarn install
-  - node crawlers/genAnalysisData.js
+  - yarn run generate:data
   - yarn run build
 
 before_script:

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { info } from '../utils/constant'
 import twDoc from '../docs/tw'
+import enDoc from '../docs/en'
 
 Vue.use(Vuex)
 
@@ -20,6 +21,18 @@ export default new Vuex.Store({
     doc: {
       lang: 'tw',
       doc: twDoc
+    },
+    docList: {
+      tw: {
+        identifier: ['tw', 'zh'],
+        name: '中文台灣',
+        doc: twDoc
+      },
+      en: {
+        identifier: ['en'],
+        name: 'english',
+        doc: enDoc
+      }
     }
   },
   getters: {
@@ -135,6 +148,11 @@ export default new Vuex.Store({
     },
     setLoading (state, { status = true }) {
       state.pageLoading = status
+    },
+    setLang (state, { lang }) {
+      const selected = state.docList[lang]
+      state.doc.doc = selected.doc
+      state.doc.lang = lang
     }
   },
   actions: {

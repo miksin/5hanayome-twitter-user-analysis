@@ -20,33 +20,51 @@
       </keep-alive>
     </div>
     <footer class="footer">
+      <button class="lang-btn" @click="handleOpenMenu">
+        <img src="lang-icon.svg" alt="language">
+      </button>
+      <p class="copyright">
+        Made by
+        <a :href="info.url" target="_blank">Miksin</a>,
+        {{ info.updatedTime }}
+      </p>
       <div class="contact-link-list">
+        <p>Contact: </p>
         <a :href="info.github" target="_blank">
           <img src="github-icon.png" alt="github">
         </a>
         <a :href="info.twitter" target="_blank">
           <img src="twitter-icon.png" alt="twitter">
         </a>
-        <a :href="info.pixiv" target="_blank">
-          <img src="pixiv-icon.png" alt="pixiv">
-        </a>
       </div>
-      <p>
-        Made by
-        <a :href="info.url" target="_blank">Miksin</a>,
-        {{ info.updatedTime }}
-      </p>
     </footer>
+    <MenuList
+      v-show="menu.active"
+      :items="docList"
+      :pos="menu.pos"
+      @select-item="handleSelectLanguage"
+      @close="menu.active = false"
+    />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import ProgressBar from './components/ProgressBar'
+import MenuList from './components/MenuList'
 
 export default {
   components: {
-    ProgressBar
+    ProgressBar,
+    MenuList
+  },
+  data () {
+    return {
+      menu: {
+        active: false,
+        pos: { x: 0, y: 0 }
+      }
+    }
   },
   computed: {
     ...mapState([
@@ -62,6 +80,14 @@ export default {
     },
     currentRouteIndex () {
       return this.routes.findIndex(r => r.name === this.$route.name)
+    },
+    docList () {
+      const { docList } = this.$store.state
+      return Object.keys(docList).map(key => ({
+        ...docList[key],
+        key,
+        disabled: this.doc.lang === key
+      }))
     }
   },
   methods: {
@@ -69,9 +95,36 @@ export default {
       this.$store.dispatch('fetchDatasetList', {
         nameList: Object.keys(this.$store.state.datasets)
       })
+    },
+    handleOpenMenu (e) {
+      const pos = {
+        x: e.clientX,
+        y: e.clientY
+      }
+      this.menu = {
+        active: true,
+        pos
+      }
+    },
+    handleSelectLanguage (lang) {
+      if (lang !== this.doc.lang) {
+        this.$store.commit('setLang', { lang })
+      }
+      this.menu.active = false
     }
   },
   mounted () {
+    if (window.navigator.language) {
+      for (let i = 0; i < this.docList.length; i++) {
+        const doc = this.docList[i]
+        for (let j = 0; j < doc.identifier.length; j++) {
+          if (window.navigator.language.indexOf(doc.identifier[j]) !== -1) {
+            this.handleSelectLanguage(doc.key)
+          }
+        }
+      }
+    }
+
     document.title = this.title
   },
   watch: {
@@ -182,7 +235,7 @@ a {
 
 .footer {
   @include flex();
-  @include flex-align(space-between, center);
+  @include flex-align(flex-start, center);
 
   width: 100%;
   min-height: $footer-height;
@@ -196,11 +249,38 @@ a {
     min-height: $footer-height * 2;
   }
 
+  .copyright {
+    flex-grow: 1;
+    text-align: left;
+  }
+
   .contact-link-list {
     @include flex();
 
     a {
       margin: auto 4px;
+    }
+
+    img {
+      width: $footer-height * 0.5;
+      height: $footer-height * 0.5;
+    }
+  }
+
+  .lang-btn {
+    cursor: pointer;
+    @include flex();
+    @include flex-align();
+    width: $footer-height * 0.7;
+    height: $footer-height * 0.7;
+    background-color: inherit;
+    outline: none;
+    border-style: none;
+    border-radius: 50%;
+    margin: auto 8px;
+
+    &:hover {
+      box-shadow: 0px 0px 0px 1px rgba($color: $white, $alpha: 1.0);
     }
 
     img {

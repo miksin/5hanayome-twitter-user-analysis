@@ -1,5 +1,5 @@
-const _ = require('lodash')
 require('lodash.combinations')
+let _ = require('lodash')
 const fs = require('fs')
 const {
   db,

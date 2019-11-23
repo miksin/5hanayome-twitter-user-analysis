@@ -1,0 +1,38 @@
+@mixin flex($dir: row, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $dir;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-align($justfyContent: center, $alignItems: center) {
+  justify-content: $justfyContent;
+  align-items: $alignItems;
+}
+
+@mixin btn($style: contained, $color: $grey) {
+  outline: none;
+  padding: 12px 16px;
+  cursor: pointer;
+
+  @if $style == contained {
+    background-color: $color;
+    color: $white;
+    border: none;
+  } @else {
+    background: none;
+    color: $color;
+    border-color: $color;
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  &:hover {
+    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, .2);
+  }
+
+  & > a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+}

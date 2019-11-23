@@ -13,8 +13,11 @@ branches:
 
 install:
   - yarn install
-  - yarn run generate:data
+  - node crawlers/genAnalysisData.js
   - yarn run build
+
+before_script:
+  - 
 
 script:
   - echo "Skipping tests"

@@ -25,6 +25,7 @@
     <meta name="twitter:creator" content="@ppy951">
     <meta name="twitter:image" content="https://miksin.github.io/5hanayome-twitter-user-analysis/demo.png">
 
+    <% if (typeof VUE_APP_GA !== 'undefined') { %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GA %>"></script>
     <script>
@@ -34,6 +35,7 @@
 
       gtag('config', '<%= VUE_APP_GA %>');
     </script>
+    <% } %>
   </head>
   <body>
     <noscript>

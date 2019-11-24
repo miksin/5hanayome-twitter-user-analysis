@@ -1,5 +1,11 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    :class="{
+      'font-tw': doc.lang === 'tw',
+      'font-jp': doc.lang === 'jp',
+    }"
+  >
     <div class="progress-bar" :class="{ show: pageLoading }">
       <progress-bar />
     </div>
@@ -174,11 +180,19 @@ a {
 }
 
 #app {
-  font-family: 'Noto Sans TC', 'Noto Sans JP', 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif, 'Noto Sans TC', 'Noto Sans JP';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  &.font-tw {
+    font-family: 'Noto Sans TC', 'Avenir', Helvetica, Arial, sans-serif;
+  }
+
+  &.font-jp {
+    font-family: 'Noto Sans JP', 'Avenir', Helvetica, Arial, sans-serif;
+  }
 }
 
 #nav {

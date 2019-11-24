@@ -60,7 +60,7 @@ const chartInfo = {
   },
   'behavior-compare-partisan': {
     title: `Comparisons Between Tweets Mentioned About {{ name }} and <span class="font-color danger">The Average</span>`,
-    description: `Comparisons between tweets containing {{ name }} and the average{{ name }} (weighted average)`
+    description: `Comparisons between tweets containing {{ name }} and the average{{ name }} (weighted mean)`
   }
 }
 

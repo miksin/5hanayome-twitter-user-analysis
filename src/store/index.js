@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { info } from '../utils/constant'
 import twDoc from '../docs/tw'
 import enDoc from '../docs/en'
+import jpDoc from '../docs/jp'
 
 Vue.use(Vuex)
 
@@ -32,6 +33,11 @@ export default new Vuex.Store({
         identifier: ['en'],
         name: 'english',
         doc: enDoc
+      },
+      jp: {
+        identifier: ['ja', 'jp'],
+        name: '日本語',
+        doc: jpDoc
       }
     }
   },
